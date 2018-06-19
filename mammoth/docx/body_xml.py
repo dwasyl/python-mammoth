@@ -56,7 +56,6 @@ def _create_reader(numbering, content_types, relationships, styles, docx_file, f
         "w:bookmarkEnd",
         "w:sectPr",
         "w:proofErr",
-        "w:lastRenderedPageBreak",
         "w:commentRangeStart",
         "w:commentRangeEnd",
         "w:del",
@@ -358,7 +357,7 @@ def _create_reader(numbering, content_types, relationships, styles, docx_file, f
             return _empty_result
         else:
             return _success(documents.bookmark(name))
-    
+
     
     def break_(element):
         break_type = element.attributes.get("w:type")
@@ -372,6 +371,10 @@ def _create_reader(numbering, content_types, relationships, styles, docx_file, f
         else:
             warning = results.warning("Unsupported break type: {0}".format(break_type))
             return _empty_result_with_message(warning)
+
+
+    def rendered_page(element):
+        return _success(documents.text("renderedpage"))
 
     
     def inline(element):
@@ -491,7 +494,8 @@ def _create_reader(numbering, content_types, relationships, styles, docx_file, f
         "w:endnoteReference": note_reference_reader("endnote"),
         "w:commentReference": read_comment_reference,
         "mc:AlternateContent": alternate_content,
-        "w:sdt": read_sdt
+        "w:sdt": read_sdt,
+        "w:lastRenderedPageBreak": rendered_page,
     }
     
     def read(element):
