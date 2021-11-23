@@ -514,6 +514,9 @@ def _create_reader(numbering, content_types, relationships, styles, docx_file, f
     def read_sdt(element):
         return read_child_elements(element.find_child_or_null("w:sdtContent"))
 
+    def rendered_page(element):
+        return _success(documents.text("renderedpage"))
+
     handlers = {
         "w:t": text,
         "w:r": run,
@@ -548,7 +551,8 @@ def _create_reader(numbering, content_types, relationships, styles, docx_file, f
         "w:endnoteReference": note_reference_reader("endnote"),
         "w:commentReference": read_comment_reference,
         "mc:AlternateContent": alternate_content,
-        "w:sdt": read_sdt
+        "w:sdt": read_sdt,
+        "w:lastRenderedPageBreak": rendered_page,
     }
 
     def read(element):
