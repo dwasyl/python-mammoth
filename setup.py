@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import os
-import sys
 from setuptools import setup
 
 def read(fname):
@@ -10,12 +9,12 @@ def read(fname):
 
 setup(
     name='mammoth',
-    version='1.5.0',
+    version='1.6.0',
     description='Convert Word documents from docx to simple and clean HTML and Markdown',
     long_description=read("README"),
     author='Michael Williamson',
     author_email='mike@zwobble.org',
-    url='http://github.com/mwilliamson/python-mammoth',
+    url='https://github.com/mwilliamson/python-mammoth',
     packages=['mammoth', 'mammoth.docx', 'mammoth.html', 'mammoth.styles', 'mammoth.styles.parser', 'mammoth.writers'],
     entry_points={
         "console_scripts": [
@@ -41,6 +40,8 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
     ],
 )
 
