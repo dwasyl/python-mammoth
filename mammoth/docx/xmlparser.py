@@ -10,7 +10,7 @@ class XmlElement(object):
     children = cobble.field()
 
     def find_child_or_null(self, name):
-        return self.find_child(name) or _null_xml_element
+        return self.find_child(name) or null_xml_element
 
     def find_child(self, name):
         for child in self.children:
@@ -42,6 +42,7 @@ class XmlElementList(object):
 
 class NullXmlElement(object):
     attributes = {}
+    children = []
 
     def find_child_or_null(self, name):
         return self
@@ -50,7 +51,7 @@ class NullXmlElement(object):
         return None
 
 
-_null_xml_element = NullXmlElement()
+null_xml_element = NullXmlElement()
 
 
 @cobble.data

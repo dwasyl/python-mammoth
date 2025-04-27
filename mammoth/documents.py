@@ -53,6 +53,7 @@ class Run(HasChildren):
     vertical_alignment = cobble.field()
     font = cobble.field()
     font_size = cobble.field()
+    highlight = cobble.field()
 
 @cobble.data
 class Text(Element):
@@ -63,6 +64,12 @@ class Hyperlink(HasChildren):
     href = cobble.field()
     anchor = cobble.field()
     target_frame = cobble.field()
+
+@cobble.data
+class Checkbox(Element):
+    checked = cobble.field()
+
+checkbox = Checkbox
 
 @cobble.data
 class Table(HasChildren):
@@ -128,6 +135,7 @@ def run(
     vertical_alignment=None,
     font=None,
     font_size=None,
+    highlight=None,
 ):
     if vertical_alignment is None:
         vertical_alignment = VerticalAlignment.baseline
@@ -144,6 +152,7 @@ def run(
         vertical_alignment=vertical_alignment,
         font=font,
         font_size=font_size,
+        highlight=highlight,
     )
 
 class VerticalAlignment(object):
